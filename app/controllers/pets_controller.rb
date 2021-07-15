@@ -14,11 +14,13 @@ class PetsController < ApplicationController
 
   # GET /pets/new
   def new
+    @clients = Client.pluck :name, :id
     @pet = Pet.new
   end
 
   # GET /pets/1/edit
   def edit
+    @clients = Client.pluck :name, :id
   end
 
   # POST /pets
@@ -69,6 +71,6 @@ class PetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pet_params
-      params.require(:pet).permit(:name, :race, :birthdate)
+      params.require(:pet).permit(:name, :breed, :birthdate, :client_id)
     end
 end
